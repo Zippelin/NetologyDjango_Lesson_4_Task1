@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Каталог{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="header">
+            <h1><a href="/catalog">Каталог</a></h1>
+        </div>
+
+        <div class="sort-block">
+            {# Здесь должен быть раздел с сортировкой #}
+        </div>
+
+        <div class="content">
+            <table>
+                <tr>
+                    <th><a href="{% url 'catalog' %}?sort=name&order={% if sort == 'name' %}{{ order }}{% endif %}">Название телефона</a></th>
+                    <th><a href="{% url 'catalog' %}?sort=price&order={% if sort == 'price' %}{{ order }}{% endif %}">Цена</a></th>
+                </tr>
+
+                {% for phone in phones_list%}
+                <tr>
+                    <td><a href="{% url 'catalog_item' phone.slug %}">{{ phone.name }}</a></td>
+                    <td>{{ phone.price }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+{% endblock %}

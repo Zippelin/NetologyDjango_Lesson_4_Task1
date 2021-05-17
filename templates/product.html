@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Телефон{% endblock %}
+{% block content %}
+<a href="{% url 'catalog' %}">На главную</a>
+    <div class="container">
+        <div class="header">
+            <h1>Телефон</h1>
+        </div>
+        <div class="content">
+            <table width="100%">
+                <tr>
+                    <th rowspan="2"><img src="{{ phone.image }}"></th>
+                    <th>Название</th>
+                    <th>Цена</th>
+                    <th>Дата выпуска</th>
+                    <th>Наличие LTE</th>
+                </tr>
+                <tr>
+                    <td>{{ phone.name }}</td>
+                    <td>{{ phone.price }}</td>
+                    <td>{{ phone.release_date }}</td>
+                    <td>{{ phone.lte_exists|yesno:"да,нет,нет данных" }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{% endblock %}
